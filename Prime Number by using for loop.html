@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number Checker</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            margin-top: 100px;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            background-color: red;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: black;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Prime Number Checker</h1>
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" min="0">
+        <button onclick="checkPrime()">Check Prime</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkPrime() {
+            const numberInput = document.getElementById("number");
+            const resultElement = document.getElementById("result");
+            const number = parseInt(numberInput.value);
+
+            if (isNaN(number) || number < 2) {
+                resultElement.textContent = "Please enter a positive integer greater than 1.";
+                return;
+            }
+
+            let isPrime = true;
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                resultElement.textContent = `${number} is a prime number.`;
+            } else {
+                resultElement.textContent = `${number} is not a prime number.`;
+            }
+        }
+    </script>
+</body>
+</html>
